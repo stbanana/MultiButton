@@ -1,8 +1,8 @@
 /********************************************************************************
 
 
- * Copyright (c) 2016 Zibin Zheng <znbin@qq.com>
- * All rights reserved
+ **** Copyright (C), 2024, Yuanlong Xu <Yono233@outlook.com>    ****
+ **** All rights reserved                                       ****
 
  ********************************************************************************
  * File Name     : MultiButtonLite.c
@@ -43,7 +43,17 @@ static void MTButtonHandler(MT_BUTTON *handle, uint8_t cycle);
  */
 void MTButtonInit(MT_BUTTON *handle, uint8_t (*pin_level)(uint8_t), uint8_t active_level, uint8_t button_id)
 {
-    memset(handle, 0, sizeof(MT_BUTTON));
+    MT_BUTTON *target  = NULL;
+    uint8_t    isFound = 0;
+    for(target = head_handle; target; target = target->next)
+    {
+        if(target == handle)
+            isFound = 1;
+    }
+
+    if(isFound == 0) // 并未存在链表中，进行memset内存初始化；
+        memset(handle, 0, sizeof(MT_BUTTON));
+    /* 若存在链表中，为避免破坏链表完整性，仅调整参数 */
     handle->event            = (uint8_t)NONE_PRESS;
     handle->hal_button_Level = pin_level;
     handle->button_level     = !active_level;

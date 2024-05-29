@@ -1,7 +1,8 @@
 /*
- * Copyright (c) 2016 Zibin Zheng <znbin@qq.com>
+ * Copyright (C), 2024, Yuanlong Xu <Yono233@outlook.com> 
  * All rights reserved
  */
+
 /*
     小巧简单易用的事件驱动型按键驱动模块，可无限量扩展按键，采用事件回调驱动，其他机制在外部包装
     此为全功能版本

@@ -1,9 +1,8 @@
 /********************************************************************************
 
 
- * Copyright (c) 2016 Zibin Zheng <znbin@qq.com>
- * All rights reserved
- 
+ **** Copyright (C), 2024, Yuanlong Xu <Yono233@outlook.com>    ****
+ **** All rights reserved                                       ****
 
  ********************************************************************************
  * File Name     : MultiButtonPro.c
@@ -54,7 +53,17 @@ void MTButtonInit(MT_BUTTON *handle,
                   uint16_t ShortT,
                   uint16_t LongT /* 拓展部分 */)
 {
-    memset(handle, 0, sizeof(MT_BUTTON));
+    MT_BUTTON *target  = NULL;
+    uint8_t    isFound = 0;
+    for(target = head_handle; target; target = target->next)
+    {
+        if(target == handle)
+            isFound = 1;
+    }
+
+    if(isFound == 0) // 并未存在链表中，进行memset内存初始化
+        memset(handle, 0, sizeof(MT_BUTTON));
+
     handle->event               = (uint8_t)NONE_PRESS;
     handle->hal_button_Level    = pin_level;
     handle->button_level        = !active_level;
@@ -234,12 +243,11 @@ static void MTButtonHandler(MT_BUTTON *handle, uint8_t cycle)
  */
 uint32_t MTButtonStart(MT_BUTTON *handle)
 {
-    MT_BUTTON *target = head_handle;
-    while(target)
+    MT_BUTTON *target;
+    for(target = head_handle; target; target = target->next)
     {
         if(target == handle)
             return -1;
-        target = target->next;
     }
     handle->next = head_handle;
     head_handle  = handle;
