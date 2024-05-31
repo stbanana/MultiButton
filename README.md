@@ -88,6 +88,7 @@ PRESS_UP | 按键弹起，每次松开都触发
 PRESS_REPEAT | 重复按下触发，变量repeat计数连击次数
 SINGLE_CLICK | 单击按键事件
 DOUBLE_CLICK | 双击按键事件
+LONG_CLICK | 长按击键事件
 SHORT_PRESS_START | 达到短按时间阈值时触发一次
 LONG_PRESS_START | 达到长按时间阈值时触发一次
 LONG_PRESS_HOLD | 长按期间一直触发
