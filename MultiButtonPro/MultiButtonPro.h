@@ -9,6 +9,10 @@
 */
 #ifndef _MULTI_BUTTON_PRO_H_
 #define _MULTI_BUTTON_PRO_H_
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 /* Includes ------------------------------------------------------------------*/
 #include <stdint.h>
@@ -68,23 +72,18 @@ typedef struct MT_BUTTON
 /* Exported variables ---------------------------------------------------------*/
 /* Exported functions ---------------------------------------------------------*/
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
-    extern void       MTButtonInit(MT_BUTTON *handle,
-                                   uint8_t (*pin_level)(uint8_t),
-                                   uint8_t  active_level,
-                                   uint8_t  button_id, /* 基础部分 */
-                                   uint8_t  DebounceC,
-                                   uint16_t ShortT,
-                                   uint16_t LongT /* 拓展部分 */);
-    extern void       MTButtonAttach(MT_BUTTON *handle, PressEvent event, BtnCallback cb);
-    extern PressEvent MTButtonEventGet(MT_BUTTON *handle);
-    extern uint32_t   MTButtonStart(MT_BUTTON *handle);
-    extern void       MTButtonStop(MT_BUTTON *handle);
-    extern void       MTButtonTicks(uint8_t cycle);
+extern void       MTButtonInit(MT_BUTTON *handle,
+                               uint8_t (*pin_level)(uint8_t),
+                               uint8_t  active_level,
+                               uint8_t  button_id, /* 基础部分 */
+                               uint8_t  DebounceC,
+                               uint16_t ShortT,
+                               uint16_t LongT /* 拓展部分 */);
+extern void       MTButtonAttach(MT_BUTTON *handle, PressEvent event, BtnCallback cb);
+extern PressEvent MTButtonEventGet(MT_BUTTON *handle);
+extern uint32_t   MTButtonStart(MT_BUTTON *handle);
+extern void       MTButtonStop(MT_BUTTON *handle);
+extern void       MTButtonTicks(uint8_t cycle);
 
 #ifdef __cplusplus
 }
